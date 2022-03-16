@@ -74,7 +74,10 @@ namespace snake
 				return true;
 			}
 			else
+			{
 				return false;
+			}
+				
 		}
 	}
 }

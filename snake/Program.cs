@@ -10,7 +10,7 @@ namespace snake
 	{
 		static void Main(string[] args)
 		{
-			Console.OutputEncoding = Encoding.UTF8;
+			Console.OutputEncoding = Encoding.UTF8; //чтобы программа принимала русские буквы
 
 			Console.SetBufferSize(250, 80);
 
