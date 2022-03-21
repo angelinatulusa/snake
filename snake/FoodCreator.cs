@@ -16,16 +16,16 @@ namespace snake
 
 		public FoodCreator(int mapWidth, int mapHeight, char sym)
 		{
-			this.mapWidht = mapWidth;
-			this.mapHeight = mapHeight;
-			this.sym = sym;
+			this.mapWidht = mapWidth; //ширина
+			this.mapHeight = mapHeight; //высота
+			this.sym = sym; //симвод еды
 		}
 
-		public Point CreateFood()
+		public Point CreateFood() //создание еды
 		{
-			int x = random.Next(2, mapWidht - 2);
-			int y = random.Next(2, mapHeight - 2);
-			return new Point(x, y, sym);
+			int x = random.Next(2, mapWidht - 2);//генерация координат x
+			int y = random.Next(2, mapHeight - 2);//генерация координат y
+			return new Point(x, y, sym);//появление еды в месте с рандомными координатами
 		}
 	}
 }

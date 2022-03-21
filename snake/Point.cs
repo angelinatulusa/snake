@@ -16,21 +16,21 @@ namespace snake
 		{
 		}
 
-		public Point(int x, int y, char sym)
+		public Point(int x, int y, char sym)//вызов функции для создания точки
 		{
 			this.x = x;
 			this.y = y;
 			this.sym = sym;
 		}
 
-		public Point(Point p)
+		public Point(Point p)//конструктор чтобы задавать точку при помощи другой
 		{
 			x = p.x;
 			y = p.y;
 			sym = p.sym;
 		}
 
-		public void Move(int offset, Direction direction)
+		public void Move(int offset, Direction direction)//конструктор для передвижения точек в определенных направлениях
 		{
 			if (direction == Direction.RIGHT)
 			{
@@ -50,7 +50,7 @@ namespace snake
 			}
 		}
 
-		public bool IsHit(Point p)
+		public bool IsHit(Point p)//метод, который проверяет есть пересечение координат
 		{
 			return p.x == this.x && p.y == this.y;
 		}
@@ -61,10 +61,10 @@ namespace snake
 			Console.Write(sym);
 		}
 
-		public void Clear()
+		public void Clear()//удаление точку
 		{
 			sym = ' ';
-			Draw();
+			Draw();//рисует пробел
 		}
 
 		public override string ToString()

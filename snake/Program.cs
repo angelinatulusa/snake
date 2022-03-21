@@ -12,27 +12,28 @@ namespace snake
 		{
 			Console.OutputEncoding = Encoding.UTF8; //чтобы программа принимала русские буквы
 
-			Console.SetBufferSize(250, 80);
+			Console.SetBufferSize(250, 80);//установки размера окна
 
 			Walls walls = new Walls(80, 25);
 			walls.Draw();
 
 			// Отрисовка точек			
-			Point p = new Point(4, 5, '*');
-			Snake snake = new Snake(p, 4, Direction.RIGHT);
+			Point p = new Point(4, 5, '*');//создание точки
+			Snake snake = new Snake(p, 4, Direction.RIGHT);//создание змейки из 4 точек и направление, куда змейка повернута
 			snake.Draw();
 
+			//создание еды
 			FoodCreator foodCreator = new FoodCreator(80, 25, '$');
 			Point food = foodCreator.CreateFood();
 			food.Draw();
 
 			while (true)
 			{
-				if (walls.IsHit(snake) || snake.IsHitTail())
+				if (walls.IsHit(snake) || snake.IsHitTail())//конец игры в случае, если змейка коснулась своего тела или поля
 				{
 					break;
 				}
-				if (snake.Eat(food))
+				if (snake.Eat(food))//если змейка "съела" еду, то появляется новая еда и змейка становится длинее
 				{
 					food = foodCreator.CreateFood();
 					food.Draw();
@@ -42,31 +43,19 @@ namespace snake
 					snake.Move();
 				}
 
-				Thread.Sleep(100);
+				Thread.Sleep(100);//скорость перемещения
 				if (Console.KeyAvailable)
 				{
 					ConsoleKeyInfo key = Console.ReadKey();
 					snake.HandleKey(key.Key);
 				}
 			}
-			WriteGameOver();
+			
 			Console.ReadLine();
 		}
 
 
-		static void WriteGameOver()
-		{
-			int xOffset = 25;
-			int yOffset = 8;
-			Console.ForegroundColor = ConsoleColor.Red;
-			Console.SetCursorPosition(xOffset, yOffset++);
-			WriteText("***************************", xOffset, yOffset++);
-			WriteText("И Г Р А    О К О Н Ч Е Н А", xOffset + 1, yOffset++);
-			yOffset++;
-			WriteText("Автор: Ангелина Тулуша", xOffset + 2, yOffset++);
-			WriteText("Специально для GeekBrains", xOffset + 1, yOffset++);
-			WriteText("***************************", xOffset, yOffset++);
-		}
+		
 
 		static void WriteText(String text, int xOffset, int yOffset)
 		{

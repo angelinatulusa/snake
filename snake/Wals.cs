@@ -14,31 +14,31 @@ namespace snake
 		{
 			wallList = new List<Figure>();
 
-			// Отрисовка рамочки
+			// Отрисовка рамочки, учитывая указанные размеры
 			HorizontalLine upLine = new HorizontalLine(0, mapWidth - 2, 0, '-');
 			HorizontalLine downLine = new HorizontalLine(0, mapWidth - 2, mapHeight - 1, '-');
 			VerticalLine leftLine = new VerticalLine(0, mapHeight - 1, 0, '=');
 			VerticalLine rightLine = new VerticalLine(0, mapHeight - 1, mapWidth - 2, '=');
-
+			//добавляем линии в список
 			wallList.Add(upLine);
 			wallList.Add(downLine);
 			wallList.Add(leftLine);
 			wallList.Add(rightLine);
 		}
 
-		internal bool IsHit(Figure figure)
+		internal bool IsHit(Figure figure)//проверка столкнулась ли змейка со стеной
 		{
 			foreach (var wall in wallList)
 			{
-				if (wall.IsHit(figure))
+				if (wall.IsHit(figure))//если змейка столкнулась со стеной, то запускается бесконечный цикл
 				{
 					return true;
 				}
 			}
-			return false;
+			return false;//если нет, то игра идет дальше
 		}
 
-		public void Draw()
+		public void Draw()//отрисовка поля
 		{
 			foreach (var wall in wallList)
 			{

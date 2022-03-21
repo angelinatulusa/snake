@@ -6,11 +6,11 @@ using System.Threading.Tasks;
 
 namespace snake
 {
-	class Figure
+	class Figure //класс-родитель
 	{
 		protected List<Point> pList;
 
-		public void Draw()
+		public void Draw() //отрисчка точек
 		{
 			foreach (Point p in pList)
 			{
