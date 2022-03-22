@@ -55,10 +55,10 @@ namespace snake
 			return p.x == this.x && p.y == this.y;
 		}
 
-		public void Draw()
+		public void Draw()//отрисовка точек
 		{
 			Console.SetCursorPosition(x, y);
-			Console.Write(sym);
+			Console.Write(sym);//рисует символ змейки, то есть ее тело 
 		}
 
 		public void Clear()//удаление точку

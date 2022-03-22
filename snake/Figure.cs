@@ -10,7 +10,7 @@ namespace snake
 	{
 		protected List<Point> pList;
 
-		public void Draw() //отрисчка точек
+		public void Draw() //отрисовка точек
 		{
 			foreach (Point p in pList)
 			{

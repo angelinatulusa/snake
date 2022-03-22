@@ -11,6 +11,8 @@ namespace snake
 		static void Main(string[] args)
 		{
 			Console.OutputEncoding = Encoding.UTF8; //чтобы программа принимала русские буквы
+			int score = 0;//переменная со счетом
+			int speed = 2;//переменная со скоростью
 
 			Console.SetBufferSize(250, 80);//установки размера окна
 
@@ -26,24 +28,36 @@ namespace snake
 			FoodCreator foodCreator = new FoodCreator(80, 25, '$');
 			Point food = foodCreator.CreateFood();
 			food.Draw();
-
+			
 			while (true)
 			{
 				if (walls.IsHit(snake) || snake.IsHitTail())//конец игры в случае, если змейка коснулась своего тела или поля
 				{
+					/*string name;
+					Console.WriteLine("Write your name: ");
+					name = Console.ReadLine();
+					//добавить имя и счет в файл*/
+					Console.Write("Your score: {0}",score);
 					break;
 				}
-				if (snake.Eat(food))//если змейка "съела" еду, то появляется новая еда и змейка становится длинее
+				if (snake.Eat(food))//если змейка "съела" еду, то появляется новая еда и змейка становится длинее 
 				{
+					
 					food = foodCreator.CreateFood();
 					food.Draw();
+					score++;
 				}
 				else
 				{
 					snake.Move();
 				}
-
 				Thread.Sleep(100);//скорость перемещения
+                while (score==speed)
+                {
+					int a = 50;
+					Thread.Sleep(100+a);
+					speed++;
+				}
 				if (Console.KeyAvailable)
 				{
 					ConsoleKeyInfo key = Console.ReadKey();
@@ -52,15 +66,6 @@ namespace snake
 			}
 			
 			Console.ReadLine();
-		}
-
-
-		
-
-		static void WriteText(String text, int xOffset, int yOffset)
-		{
-			Console.SetCursorPosition(xOffset, yOffset);
-			Console.WriteLine(text);
 		}
 
 	}
