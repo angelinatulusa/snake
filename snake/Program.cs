@@ -11,12 +11,17 @@ namespace snake
 		static void Main(string[] args)
 		{
 			Console.OutputEncoding = Encoding.UTF8; //чтобы программа принимала русские буквы
-			int score = 0;//переменная со счетом
-			int speed = 2;//переменная со скоростью
+			Color color = new Color();
+			color.ColorOfSnake();
+			Console.Clear();
+
+			Score score = new Score();//переменная со счетом
+			Score speed = new Score();//переменная со скоростью
 
 			Console.SetBufferSize(250, 80);//установки размера окна
 
 			Walls walls = new Walls(80, 25);
+			
 			walls.Draw();
 
 			// Отрисовка точек			
@@ -31,31 +36,29 @@ namespace snake
 			
 			while (true)
 			{
+				
 				if (walls.IsHit(snake) || snake.IsHitTail())//конец игры в случае, если змейка коснулась своего тела или поля
 				{
-					/*string name;
-					Console.WriteLine("Write your name: ");
-					name = Console.ReadLine();
-					//добавить имя и счет в файл*/
-					Console.Write("Your score: {0}",score);
+					score.WriteScore();
 					break;
 				}
 				if (snake.Eat(food))//если змейка "съела" еду, то появляется новая еда и змейка становится длинее 
 				{
-					
+					score.ScoreUp();
 					food = foodCreator.CreateFood();
 					food.Draw();
-					score++;
 				}
 				else
 				{
 					snake.Move();
 				}
 				Thread.Sleep(100);//скорость перемещения
-                while (score==speed)
-                {
-					int a = 50;
-					Thread.Sleep(100+a);
+				int a = 50;
+				while (score == speed)
+				{
+
+					Thread.Sleep(100 + a);
+					a += 50;
 					speed++;
 				}
 				if (Console.KeyAvailable)
